@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.yyt.orm.member.Member" table="company_member">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+      
+        <property name="memberId" type="string">
+            <column name="memberId" />
+        </property>
+        
+         <property name="childname" type="string">
+            <column name="childname" />
+        </property>
+         <property name="sex" type="string">
+            <column name="sex" />
+        </property>
+     	  <property name="memberLevel" type="com.yyt.orm.member.util.MemberLevel">
+            <column name="memberLevel" />
+        </property>
+        
+         <property name="monthes" type="integer">
+            <column name="monthes" />
+        </property>
+         <property name="motherName" type="string">
+            <column name="motherName" />
+        </property>
+          <property name="memberCode" type="integer">
+            <column name="memberCode" />
+        </property>
+        
+         <property name="accuracyRate" type="float">
+            <column name="accuracyRate" precision="32" scale="0"/>
+        </property>
+         <property name="fatherName" type="string">
+            <column name="fatherName" />
+        </property>
+          <property name="motherPhoneNum" type="string">
+            <column name="motherPhoneNum" />
+        </property>
+        
+         <property name="familyPhoneNum" type="string">
+            <column name="familyPhoneNum" />
+        </property>
+         <property name="familyAddress" type="string">
+            <column name="familyAddress" />
+        </property>
+          <property name="memberEmail" type="string">
+            <column name="memberEmail" />
+        </property>
+         <property name="registerDate" type="date">
+            <column name="registerDate" />
+        </property>
+        <many-to-one name="village" class="com.yyt.orm.member.Village">
+        	<column name="villageId"/>
+        </many-to-one>
+        <many-to-one name="companyStore" class="com.yyt.orm.company.CompanyStore">
+        	<column name="companystoreId"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.yyt.orm.company.CompanyRole" table="company_companyrole">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+      
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        
+         <property name="remark" type="string">
+            <column name="remark" />
+        </property>
+       
+        <!-- 权限关联角色 -->
+       <set name="companypoweres" table="companypower_Role" >
+            <key>
+                <column name="companyroleId" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.yyt.orm.company.CompanyPower">
+                <column name="companypowerId" not-null="true" />
+            </many-to-many>
+        </set>
+        <!-- 角色关联用户 -->
+        <set name="companystaffes" table="companystaff_Role" >
+            <key>
+                <column name="staffId" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.yyt.orm.company.CompanyStaff">
+                <column name="roleId" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

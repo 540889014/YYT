@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.yyt.orm.company.CompanyPower" table="company_companyPower">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+      
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        
+         <property name="url" type="string">
+            <column name="url" />
+        </property>
+        <!-- 关联上级权限 -->
+       <many-to-one name="parent" class="com.yyt.orm.company.CompanyPower">
+       	<column name="parentId"/>
+       </many-to-one>
+       <!-- 取出下级 -->
+        <set name="childrens" inverse="true" cascade="all">
+            <key>
+                <column name="parentId" />
+            </key>
+            <one-to-many class="com.yyt.orm.company.CompanyPower" />
+        </set>
+        <!-- 权限关联角色 -->
+       <set name="roles" table="companypower_Role" >
+            <key>
+                <column name="companypowerId" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.yyt.orm.company.CompanyRole">
+                <column name="companyroleId" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.yyt.orm.store.Staff" table="companystore_staff">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+      
+        <property name="staffName" type="string">
+            <column name="staffName" />
+        </property>
+        
+         <property name="sex" type="string">
+            <column name="sex" />
+        </property>
+         <property name="Idcard" type="string">
+            <column name="Idcard" />
+        </property>
+     	  <property name="satisfaction" type="com.yyt.orm.member.util.Satisfaction">
+            <column name="satisfaction" />
+        </property>
+        
+         <property name="phoneNum" type="string">
+            <column name="phoneNum" />
+        </property>
+         <property name="staffCode" type="string">
+            <column name="staffCode" />
+        </property>
+          <property name="serviceNum" type="string">
+            <column name="serviceNum" />
+        </property>
+        
+         <property name="staffEmail" type="string">
+            <column name="staffEmail"/>
+        </property>
+        
+          <property name="weixinNum" type="string">
+            <column name="weixinNum" />
+        </property>
+        
+         <property name="joinTime" type="date">
+            <column name="joinTime" />
+        </property>
+         <property name="nowState" type="string">
+            <column name="nowState" />
+        </property>
+          <property name="loginname" type="string">
+            <column name="loginname" />
+        </property>
+         <property name="loginpassword" type="date">
+            <column name="loginpassword" />
+        </property>
+       
+        <many-to-one name="companyStore" class="com.yyt.orm.company.CompanyStore">
+        	<column name="companystoreId"/>
+        </many-to-one>
+        <!-- -所有权限 -->
+       <set name="storerole" table="companystorestaff_Role" >
+            <key>
+                <column name="roleId" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.yyt.orm.store.StoreRole">
+                <column name="staffId" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="reports">
+        	<key>
+        		<column name="staffId"/>
+        	</key>
+        	<one-to-many class="com.yyt.orm.store.StaffReport"/>
+        </set>
+    </class>
+</hibernate-mapping>

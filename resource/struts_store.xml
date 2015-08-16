@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+<constant name="i18n.encoding" value="utf-8"/>
+	<!-- 配置为开发模式 -->
+ 	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.locale" value="zh_CN" />
+	 <constant name="struts.ui.theme" value="simple" />
+	 <constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+	  <constant name="struts.multipart.maxSize" value="1048576000"/>
+	  <constant name="struts.custom.i18n.resources" value="globalMessages" /> 
+	 <!-- 配置后台管理 --> 
+	<package name="store" extends="struts-default" namespace="/manager">
+	
+	
+	</package>
+	
+</struts>    

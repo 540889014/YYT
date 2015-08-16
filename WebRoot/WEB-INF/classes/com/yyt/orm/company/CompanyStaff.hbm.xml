@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.yyt.orm.company.CompanyStaff" table="company_companystaff">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+      
+        <property name="username" type="string">
+            <column name="username" />
+        </property>
+        
+         <property name="staffPhone" type="string">
+            <column name="staffphone" />
+        </property>
+         <property name="password" type="string">
+            <column name="password" />
+        </property>
+       
+        <!-- 公司的员工关联加盟店 -->
+       <set name="stores" inverse="true" >
+            <key>
+                <column name="companystaffId"/>
+            </key>
+            <one-to-many class="com.yyt.orm.company.CompanyStore"/>
+        </set>
+        <!-- 角色关联用户 -->
+        <set name="companyRoles" table="companystaff_Role" >
+            <key>
+                <column name="roleId" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.yyt.orm.company.CompanyRole">
+                <column name="staffId" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

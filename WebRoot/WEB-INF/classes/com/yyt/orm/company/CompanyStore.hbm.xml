@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.yyt.orm.company.CompanyStore" table="company_store">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+      
+        <property name="storename" type="string">
+            <column name="storename" />
+        </property>
+        
+         <property name="storeManager" type="string">
+            <column name="storeManager" />
+        </property>
+           <property name="storePhone" type="string">
+            <column name="storePhone" />
+        </property>
+      
+         <property name="storeManagerPhone" type="string">
+            <column name="storeManagerPhone" />
+        </property>
+        <property name="storeManagerEmail" type="string">
+            <column name="storeManagerEmail" />
+        </property>
+        
+         <property name="storeManagerWeixin" type="string">
+            <column name="storeManagerWeixin" />
+        </property>
+           <property name="staffnum" type="integer">
+            <column name="staffnum" />
+        </property>
+      
+         <property name="storeAddress" type="string">
+            <column name="storeAddress" />
+        </property>
+        <property name="buildDate" type="date">
+        	<column name="buildDate"/>
+        </property>
+        <property name="shangxian" type="boolean">
+        	<column name="shangxian"/>
+        </property>
+      	<many-to-one name="companyStaff" class="com.yyt.orm.company.CompanyStore">
+      		<column name="companystaffId"></column>
+      	</many-to-one>
+      <!-- kdjlsakjdlkasjdl -->
+       <set name="members">
+            <key>
+                <column name="companystoreId"/>
+            </key>
+            <one-to-many class="com.yyt.orm.member.Member"/>
+        </set>
+         <set name="villages">
+            <key>
+                <column name="companystoreId"/>
+            </key>
+            <one-to-many class="com.yyt.orm.member.Village"/>
+        </set>
+         <set name="staffes" >
+            <key>
+                <column name="companystoreId"/>
+            </key>
+            <one-to-many class="com.yyt.orm.store.Staff"/>
+        </set>
+         <set name="reportes">
+            <key>
+                <column name="companystoreId"/>
+            </key>
+            <one-to-many class="com.yyt.orm.store.StaffReport"/>
+        </set>
+      <set name="servicepirces" >
+            <key>
+                <column name="companystoreId"/>
+            </key>
+            <one-to-many class="com.yyt.orm.store.StoreServicePrice"/>
+        </set>
+         <set name="rolees" >
+            <key>
+                <column name="companystoreId"/>
+            </key>
+            <one-to-many class="com.yyt.orm.store.StoreRole"/>
+        </set>
+    </class>
+</hibernate-mapping>

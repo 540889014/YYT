@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.yyt.orm.store.StaffReport" table="companystore_report">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+      
+        <property name="title" type="string">
+            <column name="title" />
+        </property>
+        
+         <property name="content" type="string">
+            <column name="content" />
+        </property>
+         <property name="createTime" type="date">
+            <column name="createTime" />
+        </property>
+     	 <many-to-one name="companyStore" class="com.yyt.orm.company.CompanyStore">
+        	<column name="companystoreId"/>
+        </many-to-one>
+        <many-to-one name="staff" class="com.yyt.orm.store.Staff">
+        	<column name="staffId"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

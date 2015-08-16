@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.yyt.orm.store.StorePower" table="companystore_power">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+      
+        <property name="powerName" type="string">
+            <column name="powerName" />
+        </property>
+        
+         <property name="url" type="string">
+            <column name="url" />
+        </property>
+         
+     
+        <many-to-one name="parent" class="com.yyt.orm.store.StorePower">
+        	<column name="parentId"/>
+        </many-to-one>
+        <!-- 权限和角色的多对多 -->
+         <set name="storeRolees" table="companystorepower_Role" >
+            <key>
+                <column name="powerId" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.yyt.orm.store.StoreRole">
+                <column name="roleId" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="childrens" inverse="true" cascade="all">
+            <key>
+                <column name="parentId" />
+            </key>
+            <one-to-many class="com.yyt.orm.store.StorePower" />
+        </set>
+    </class>
+</hibernate-mapping>

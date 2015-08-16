@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.yyt.orm.member.Village" table="company_village">
+        <id name="id" type="integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+      
+        <property name="villageName" type="string">
+            <column name="villageName" />
+        </property>
+        
+         <property name="memberNum" type="integer">
+            <column name="memberNum" />
+        </property>
+        
+        
+         <property name="villageAddress" type="string">
+            <column name="villageAddress" />
+        </property>
+         <property name="xingzheng" type="string">
+            <column name="xingzheng" />
+        </property>
+        
+         <property name="guimo" type="string">
+            <column name="guimo" />
+        </property>
+         <set name="memberes" inverse="true">
+         	<key>
+         		<column name="villageId"/>
+         	</key>
+         	<one-to-many class="com.yyt.orm.member.Member"/>
+         </set>
+        <many-to-one name="companyStore" class="com.yyt.orm.company.CompanyStore">
+        	<column name="companystoreId"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
